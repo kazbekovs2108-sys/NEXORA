@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA — Премиальный интернет-магазин электроники, моды и стиля жизни</title>
+<meta name="description" content="NEXORA — премиальный интернет-магазин мирового уровня. Смартфоны, ноутбуки, смарт-часы, одежда, косметика и многое другое с быстрой доставкой и гарантией качества.">
+<meta name="keywords" content="интернет-магазин, смартфоны, ноутбуки, электроника, мода, косметика, NEXORA">
+<meta property="og:title" content="NEXORA — Премиальный интернет-магазин">
+<meta property="og:description" content="Мир премиальных технологий, моды и стиля в одном месте.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&q=80">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23c9a961'/%3E%3Cstop offset='1' stop-color='%23f4d78b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0f'/%3E%3Cpath d='M28 72V28h9l26 30V28h9v44h-9L37 42v30z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#08080c;
+  --bg-soft:#111117;
+  --bg-card:#15151d;
+  --bg-card-hover:#1c1c26;
+  --line: rgba(255,255,255,0.08);
+  --text:#f3f3f6;
+  --muted:#9a9aa8;
+  --muted-2:#68687a;
+  --gold:#c9a961;
+  --gold-light:#f4d78b;
+  --accent:#5b7cff;
+  --danger:#ff5c72;
+  --success:#4ade9b;
+  --radius:18px;
+  --radius-sm:10px;
+  --shadow: 0 20px 60px rgba(0,0,0,0.45);
+  --font-display:'Poppins', sans-serif;
+  --font-body:'Inter', sans-serif;
+  --header-h: 84px;
+}
+[data-theme="light"]{
+  --bg:#f6f5f2;
+  --bg-soft:#ffffff;
+  --bg-card:#ffffff;
+  --bg-card-hover:#f0efe9;
+  --line: rgba(10,10,15,0.08);
+  --text:#111116;
+  --muted:#5c5c68;
+  --muted-2:#8a8a96;
+  --shadow: 0 20px 50px rgba(20,20,30,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  transition:background .4s ease, color .4s ease;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+ul{list-style:none;}
+::selection{background:var(--gold);color:#000;}
+.container{max-width:1360px;margin:0 auto;padding:0 32px;}
+@media(max-width:640px){.container{padding:0 18px;}}
+
+/* scrollbar */
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
+
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.02em;}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:22px;height:1px;background:var(--gold);}
+
+.section{padding:110px 0;position:relative;}
+@media(max-width:900px){.section{padding:70px 0;}}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;gap:24px;flex-wrap:wrap;}
+.section-head h2{font-size:clamp(28px,3.4vw,44px);font-weight:600;}
+.section-sub{color:var(--muted);font-size:15px;max-width:460px;margin-top:6px;}
+.view-all{border:1px solid var(--line);padding:12px 26px;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:.03em;transition:.3s;white-space:nowrap;}
+.view-all:hover{background:var(--gold);border-color:var(--gold);color:#0a0a0f;}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 34px;border-radius:100px;font-weight:600;font-size:14px;
+  letter-spacing:.02em;cursor:pointer;transition:.35s cubic-bezier(.2,.8,.2,1);
+  position:relative;overflow:hidden;
+}
+.btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#0a0a0f;}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(201,169,97,0.35);}
+.btn-ghost{border:1px solid var(--line);color:var(--text);}
+.btn-ghost:hover{background:rgba(255,255,255,0.06);}
+.btn-dark{background:var(--text);color:var(--bg);}
+.btn-sm{padding:10px 20px;font-size:12px;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+
+/* ripple */
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.55);transform:scale(0);animation:ripple .6s ease-out;pointer-events:none;}
+@keyframes ripple{to{transform:scale(3.2);opacity:0;}}
+
+/* ============ PRELOADER ============ */
+#preloader{
+  position:fixed;inset:0;z-index:9999;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+#preloader.hide{opacity:0;visibility:hidden;}
+.pre-logo{font-family:var(--font-display);font-size:34px;font-weight:700;letter-spacing:.08em;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.pre-bar{width:180px;height:2px;background:var(--line);border-radius:2px;overflow:hidden;}
+.pre-bar span{display:block;height:100%;width:0%;background:var(--gold);animation:load 1.4s ease forwards;}
+@keyframes load{to{width:100%;}}
+
+/* ============ HEADER ============ */
+.topbar{background:var(--bg-soft);border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted);}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;height:38px;}
+.topbar-links{display:flex;gap:22px;}
+.topbar-links a:hover{color:var(--gold);}
+@media(max-width:760px){.topbar-links span:nth-child(2),.topbar-links span:nth-child(3){display:none;}}
+
+header.site-header{
+  position:sticky;top:0;z-index:500;background:rgba(8,8,12,0.72);
+  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid var(--line);height:var(--header-h);
+}
+[data-theme="light"] header.site-header{background:rgba(246,245,242,0.75);}
+.header-inner{height:100%;display:flex;align-items:center;gap:32px;}
+.logo{font-family:var(--font-display);font-size:24px;font-weight:700;letter-spacing:.03em;display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.logo em{font-style:normal;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
+nav.main-nav{display:flex;gap:6px;flex:1;}
+nav.main-nav > .nav-item{position:relative;}
+nav.main-nav > .nav-item > a{padding:10px 16px;font-size:14.5px;font-weight:500;border-radius:8px;display:flex;align-items:center;gap:6px;transition:.25s;}
+nav.main-nav > .nav-item > a:hover{color:var(--gold);background:rgba(255,255,255,0.04);}
+.mega{
+  position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(8px);
+  width:min(760px,80vw);background:var(--bg-card);border:1px solid var(--line);border-radius:16px;
+  padding:26px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transition:.3s ease;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+}
+.nav-item:hover .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.mega a{display:flex;flex-direction:column;gap:6px;padding:12px 10px;border-radius:10px;font-size:13.5px;color:var(--muted);transition:.2s;}
+.mega a:hover{background:rgba(201,169,97,0.1);color:var(--gold);}
+.mega a .em{font-size:22px;}
+
+.header-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;transition:.25s;}
+.icon-btn:hover{background:rgba(255,255,255,0.06);}
+.icon-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;}
+.badge-count{position:absolute;top:2px;right:2px;background:var(--gold);color:#0a0a0f;font-size:10px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.burger{display:none;}
+@media(max-width:1080px){
+  nav.main-nav{display:none;}
+  .burger{display:flex;}
+}
+
+.search-box{flex:1;max-width:380px;position:relative;display:flex;align-items:center;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;padding:0 6px 0 18px;height:44px;}
+.search-box input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:14px;}
+.search-box input::placeholder{color:var(--muted-2);}
+.search-box svg{width:17px;height:17px;stroke:var(--muted);flex-shrink:0;}
+@media(max-width:900px){.search-box{display:none;}}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;}
+.hero-slides{position:absolute;inset:0;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;}
+.hero-slide.active{opacity:1;}
+.hero-slide img{width:100%;height:100%;object-fit:cover;}
+.hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,6,10,0.92) 10%,rgba(6,6,10,0.55) 55%,rgba(6,6,10,0.25) 100%);}
+[data-theme="light"] .hero-slide::after{background:linear-gradient(90deg,rgba(246,245,242,0.94) 10%,rgba(246,245,242,0.6) 55%,rgba(246,245,242,0.25) 100%);}
+.hero-content{position:relative;z-index:2;max-width:640px;padding:40px 0;}
+.hero-content .eyebrow{color:var(--gold-light);}
+.hero-content h1{font-size:clamp(38px,6vw,68px);line-height:1.04;font-weight:700;margin-bottom:22px;}
+.hero-content p{color:var(--muted);font-size:17px;max-width:480px;margin-bottom:34px;line-height:1.6;}
+[data-theme="light"] .hero-content p{color:#3a3a44;}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
+.hero-dots{position:absolute;bottom:34px;left:32px;z-index:3;display:flex;gap:10px;}
+.hero-dots button{width:34px;height:4px;border-radius:4px;background:rgba(255,255,255,0.25);transition:.3s;}
+.hero-dots button.active{background:var(--gold);}
+.hero-arrows{position:absolute;right:32px;bottom:34px;z-index:3;display:flex;gap:10px;}
+.hero-arrows button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;color:#fff;transition:.25s;}
+.hero-arrows button:hover{background:var(--gold);border-color:var(--gold);color:#0a0a0f;}
+.hero-arrows svg{width:18px;height:18px;}
+
+.hero-stats{position:absolute;right:32px;top:34px;z-index:3;display:flex;gap:36px;}
+@media(max-width:900px){.hero-stats{display:none;}}
+.hero-stats div{text-align:right;}
+.hero-stats b{display:block;font-family:var(--font-display);font-size:26px;color:var(--gold-light);}
+.hero-stats span{font-size:11.5px;color:#cfcfd6;letter-spacing:.05em;text-transform:uppercase;}
+
+/* ============ MARQUEE / PROMO ============ */
+.marquee{background:var(--gold);color:#0a0a0f;padding:13px 0;overflow:hidden;white-space:nowrap;font-weight:600;font-size:13.5px;letter-spacing:.03em;}
+.marquee-track{display:inline-flex;animation:scroll-left 22s linear infinite;}
+.marquee-track span{padding:0 30px;display:inline-flex;align-items:center;gap:10px;}
+@keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ============ PROMO BANNERS ============ */
+.promo-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:22px;}
+@media(max-width:900px){.promo-grid{grid-template-columns:1fr;}}
+.promo-card{
+  position:relative;border-radius:var(--radius);overflow:hidden;min-height:300px;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:32px;
+  border:1px solid var(--line);
+}
+.promo-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .6s ease;}
+.promo-card:hover img{transform:scale(1.06);}
+.promo-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,12,0) 30%,rgba(8,8,12,0.92));z-index:1;}
+.promo-card > *{position:relative;z-index:2;}
+.promo-card h3{font-size:24px;margin-bottom:6px;color:#fff;}
+.promo-card p{color:#d8d8de;font-size:14px;margin-bottom:16px;}
+.promo-card .tag{position:absolute;top:20px;left:20px;background:var(--danger);color:#fff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;z-index:2;}
+
+.countdown-banner{
+  margin-top:24px;background:linear-gradient(120deg,#151520,#1d1d2b);
+  border:1px solid var(--line);border-radius:var(--radius);padding:36px 40px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;
+}
+.countdown-banner h3{font-size:26px;margin-bottom:6px;}
+.countdown-banner p{color:var(--muted);font-size:14px;}
+.timer{display:flex;gap:12px;}
+.timer div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 16px;text-align:center;min-width:66px;}
+.timer b{font-family:var(--font-display);font-size:26px;display:block;}
+.timer span{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+
+/* ============ CATEGORIES ============ */
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+@media(max-width:1080px){.cat-grid{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:760px){.cat-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:480px){.cat-grid{grid-template-columns:repeat(2,1fr);}}
+.cat-card{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:16px;
+  padding:26px 16px;text-align:center;transition:.3s;cursor:pointer;
+}
+.cat-card:hover{transform:translateY(-6px);border-color:var(--gold);background:var(--bg-card-hover);}
+.cat-card .em{font-size:32px;display:block;margin-bottom:12px;}
+.cat-card h4{font-size:13.5px;font-weight:600;}
+.cat-card span{font-size:11.5px;color:var(--muted);}
+
+/* ============ FILTER BAR ============ */
+.filter-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:36px;}
+.filter-bar select, .filter-bar .chip{
+  background:var(--bg-card);border:1px solid var(--line);color:var(--text);
+  padding:11px 18px;border-radius:100px;font-size:13px;font-weight:500;transition:.25s;
+}
+.filter-bar select{cursor:pointer;}
+.chip{cursor:pointer;}
+.chip.active{background:var(--gold);color:#0a0a0f;border-color:var(--gold);}
+.chip:hover{border-color:var(--gold);}
+
+/* ============ PRODUCT GRID ============ */
+.grid-products{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+@media(max-width:1200px){.grid-products{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:820px){.grid-products{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.grid-products{grid-template-columns:1fr;}}
+
+.p-card{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;position:relative;transition:.35s cubic-bezier(.2,.8,.2,1);
+  display:flex;flex-direction:column;
+}
+.p-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(201,169,97,0.4);}
+.p-media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--bg-soft);}
+.p-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.p-card:hover .p-media img{transform:scale(1.08);}
+.p-flags{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:6px;z-index:2;}
+.flag{font-size:11px;font-weight:700;padding:5px 11px;border-radius:100px;letter-spacing:.02em;}
+.flag.new{background:var(--accent);color:#fff;}
+.flag.hit{background:var(--danger);color:#fff;}
+.flag.sale{background:var(--gold);color:#0a0a0f;}
+.p-fav{
+  position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;
+  background:rgba(10,10,15,0.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
+  transition:.25s;
+}
+.p-fav svg{width:17px;height:17px;stroke:#fff;fill:none;transition:.25s;}
+.p-fav.active svg{fill:var(--danger);stroke:var(--danger);}
+.p-fav:hover{background:var(--danger);}
+.p-quick{
+  position:absolute;bottom:-46px;left:0;right:0;display:flex;justify-content:center;padding:12px;
+  transition:.3s;z-index:2;
+}
+.p-card:hover .p-quick{bottom:0;}
+.p-quick button{background:var(--text);color:var(--bg);font-size:12.5px;font-weight:600;padding:9px 20px;border-radius:100px;}
+.p-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.p-cat{font-size:11px;color:var(--muted-2);text-transform:uppercase;letter-spacing:.06em;}
+.p-name{font-size:15px;font-weight:600;line-height:1.35;min-height:40px;}
+.p-rating{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);}
+.stars{color:var(--gold);letter-spacing:1px;}
+.p-price{display:flex;align-items:baseline;gap:10px;margin-top:2px;}
+.p-price .now{font-size:19px;font-weight:700;font-family:var(--font-display);}
+.p-price .old{font-size:13px;color:var(--muted-2);text-decoration:line-through;}
+.p-price .off{font-size:12px;color:var(--success);font-weight:700;}
+.p-actions{display:flex;gap:10px;margin-top:10px;}
+.p-actions .btn{flex:1;padding:12px;font-size:13px;}
+
+.load-more-wrap{display:flex;justify-content:center;margin-top:48px;}
+
+/* ============ BRANDS ============ */
+.brand-strip{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:30px;padding:40px 0;opacity:.85;}
+.brand-strip div{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--muted);letter-spacing:.02em;transition:.3s;}
+.brand-strip div:hover{color:var(--gold);}
+
+/* ============ STATS ============ */
+.stats-band{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+@media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+.stats-grid b{display:block;font-family:var(--font-display);font-size:44px;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.stats-grid span{color:var(--muted);font-size:13.5px;letter-spacing:.03em;}
+
+/* ============ TESTIMONIALS ============ */
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+@media(max-width:900px){.review-grid{grid-template-columns:1fr;}}
+.review-card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;}
+.review-card .stars{display:block;margin-bottom:16px;font-size:16px;}
+.review-card p{color:var(--muted);font-size:14.5px;line-height:1.7;margin-bottom:22px;}
+.review-who{display:flex;align-items:center;gap:12px;}
+.review-who img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+.review-who b{font-size:14px;display:block;}
+.review-who span{font-size:12px;color:var(--muted-2);}
+
+/* ============ FAQ ============ */
+.faq-list{max-width:820px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:24px 4px;font-size:16px;font-weight:500;text-align:left;}
+.faq-q svg{width:18px;height:18px;flex-shrink:0;transition:.3s;stroke:var(--gold);}
+.faq-item.open .faq-q svg{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:.35s ease;color:var(--muted);font-size:14.5px;line-height:1.7;}
+.faq-item.open .faq-a{max-height:220px;padding-bottom:24px;}
+
+/* ============ NEWSLETTER ============ */
+.newsletter{
+  background:linear-gradient(120deg,#141420,#1c1c2c);border:1px solid var(--line);border-radius:24px;
+  padding:64px 48px;text-align:center;position:relative;overflow:hidden;
+}
+.newsletter::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(201,169,97,0.18),transparent 70%);top:-150px;right:-100px;}
+.newsletter h2{font-size:clamp(24px,3vw,36px);margin-bottom:12px;}
+.newsletter p{color:var(--muted);margin-bottom:30px;}
+.news-form{display:flex;justify-content:center;gap:12px;max-width:460px;margin:0 auto;flex-wrap:wrap;position:relative;z-index:2;}
+.news-form input{flex:1;min-width:220px;padding:15px 22px;border-radius:100px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:14px;outline:none;}
+.news-form input:focus{border-color:var(--gold);}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+.contact-form{display:flex;flex-direction:column;gap:16px;}
+.contact-form input, .contact-form textarea{
+  background:var(--bg-card);border:1px solid var(--line);color:var(--text);
+  padding:15px 18px;border-radius:12px;font-size:14px;outline:none;font-family:inherit;transition:.25s;
+}
+.contact-form input:focus, .contact-form textarea:focus{border-color:var(--gold);}
+.contact-form textarea{resize:vertical;min-height:130px;}
+.map-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:340px;}
+.map-wrap iframe{width:100%;height:100%;min-height:340px;border:0;filter:grayscale(1) invert(0.9) contrast(0.9);}
+[data-theme="light"] .map-wrap iframe{filter:none;}
+
+/* ============ FOOTER ============ */
+footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:80px 0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:60px;}
+@media(max-width:900px){.footer-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr;}}
+.footer-grid h5{font-size:13.5px;margin-bottom:20px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
+.footer-grid ul li{margin-bottom:12px;}
+.footer-grid ul li a{font-size:14px;color:var(--text);opacity:.8;transition:.2s;}
+.footer-grid ul li a:hover{opacity:1;color:var(--gold);}
+.footer-brand p{color:var(--muted);font-size:14px;margin:18px 0 22px;max-width:280px;line-height:1.6;}
+.social-row{display:flex;gap:10px;}
+.social-row a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.25s;}
+.social-row a:hover{background:var(--gold);border-color:var(--gold);color:#0a0a0f;}
+.social-row svg{width:16px;height:16px;}
+.footer-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted-2);}
+
+/* ============ BACK TO TOP ============ */
+#toTop{
+  position:fixed;bottom:28px;right:28px;width:50px;height:50px;border-radius:50%;
+  background:var(--gold);color:#0a0a0f;display:flex;align-items:center;justify-content:center;
+  z-index:400;opacity:0;visibility:hidden;transform:translateY(10px);transition:.3s;box-shadow:var(--shadow);
+}
+#toTop.show{opacity:1;visibility:visible;transform:translateY(0);}
+#toTop svg{width:20px;height:20px;}
+
+/* ============ CART DRAWER ============ */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(3px);z-index:800;opacity:0;visibility:hidden;transition:.35s;}
+.overlay.show{opacity:1;visibility:visible;}
+.drawer{
+  position:fixed;top:0;right:0;height:100%;width:420px;max-width:92vw;background:var(--bg-soft);
+  z-index:900;transform:translateX(100%);transition:.4s cubic-bezier(.2,.8,.2,1);
+  display:flex;flex-direction:column;border-left:1px solid var(--line);
+}
+.drawer.show{transform:translateX(0);}
+.drawer-head{padding:26px 26px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+.drawer-head h3{font-size:19px;}
+.drawer-close{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.drawer-close:hover{background:rgba(255,255,255,0.06);}
+.drawer-body{flex:1;overflow-y:auto;padding:20px 26px;}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+.cart-item img{width:74px;height:74px;border-radius:12px;object-fit:cover;flex-shrink:0;}
+.ci-info{flex:1;display:flex;flex-direction:column;gap:6px;}
+.ci-info b{font-size:13.5px;font-weight:600;line-height:1.3;}
+.ci-price{font-size:13.5px;color:var(--gold);font-weight:600;}
+.qty-ctrl{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:100px;width:fit-content;padding:4px 6px;}
+.qty-ctrl button{width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:14px;}
+.qty-ctrl button:hover{background:var(--gold);color:#0a0a0f;}
+.ci-remove{align-self:flex-start;color:var(--danger);font-size:12px;text-decoration:underline;margin-top:auto;cursor:pointer;}
+.empty-cart{text-align:center;padding:60px 20px;color:var(--muted);}
+.empty-cart svg{width:60px;height:60px;stroke:var(--muted-2);margin-bottom:16px;}
+.drawer-foot{padding:22px 26px 28px;border-top:1px solid var(--line);}
+.sum-row{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:10px;}
+.sum-row.total{color:var(--text);font-size:18px;font-weight:700;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
+.drawer-foot .btn{width:100%;margin-top:14px;}
+
+/* ============ MODALS ============ */
+.modal{position:fixed;inset:0;z-index:950;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:.3s;}
+.modal.show{opacity:1;visibility:visible;}
+.modal-box{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);max-width:920px;width:100%;
+  max-height:88vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:.35s;
+}
+.modal.show .modal-box{transform:translateY(0);}
+.modal-close{position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;z-index:5;}
+.modal-close:hover{background:var(--danger);}
+.qv-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+@media(max-width:700px){.qv-grid{grid-template-columns:1fr;}}
+.qv-img{aspect-ratio:1/1;overflow:hidden;background:var(--bg-soft);}
+.qv-img img{width:100%;height:100%;object-fit:cover;}
+.qv-info{padding:38px;display:flex;flex-direction:column;gap:14px;}
+.qv-info h3{font-size:24px;}
+.qv-info .p-price .now{font-size:26px;}
+.qv-info p.desc{color:var(--muted);font-size:14px;line-height:1.7;}
+.qv-info .p-actions{margin-top:auto;}
+
+/* checkout modal */
+.checkout-steps{display:flex;justify-content:center;gap:0;padding:30px 30px 0;}
+.checkout-steps div{flex:1;text-align:center;font-size:12px;color:var(--muted);position:relative;padding-bottom:14px;border-bottom:2px solid var(--line);}
+.checkout-steps div.active{color:var(--gold);border-color:var(--gold);font-weight:600;}
+.checkout-body{padding:32px;}
+.co-success{text-align:center;padding:60px 30px;}
+.co-success svg{width:70px;height:70px;stroke:var(--success);margin-bottom:20px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+@media(max-width:520px){.form-row{grid-template-columns:1fr;}}
+
+/* ============ TOAST ============ */
+#toast-wrap{position:fixed;bottom:28px;left:28px;z-index:1000;display:flex;flex-direction:column;gap:10px;}
+.toast{
+  background:var(--bg-card);border:1px solid var(--gold);color:var(--text);padding:14px 22px;border-radius:12px;
+  font-size:13.5px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;
+  animation:toast-in .3s ease, toast-out .3s ease 2.4s forwards;
+}
+@keyframes toast-in{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
+@keyframes toast-out{to{opacity:0;transform:translateX(-20px);}}
+
+/* ============ REVEAL ANIM ============ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ============ MISC ============ */
+.glass{background:rgba(255,255,255,0.04);backdrop-filter:blur(14px);}
+.divider-fade{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:0 auto;}
+
+@media(max-width:640px){
+  .header-inner{gap:14px;}
+  .logo{font-size:19px;}
+  .promo-card{min-height:220px;padding:22px;}
+}
+</style>
+</head>
+<body data-theme="dark">
+
+<div id="preloader"><div class="pre-logo">NEXORA</div><div class="pre-bar"><span></span></div></div>
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-links">
+      <span>Бесплатная доставка от 5000 ₽</span>
+      <span>Поддержка 24/7</span>
+      <span>Гарантия 2 года на всё</span>
+    </div>
+    <div class="topbar-links">
+      <a href="#" id="langBtn">RU / ₽</a>
+      <a href="#contact">Помощь</a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <button class="icon-btn burger" id="burgerBtn" aria-label="Меню">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="#top" class="logo">NEX<em>ORA</em></a>
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-item"><a href="#categories">Каталог <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega" id="megaMenu"></div>
+      </div>
+      <div class="nav-item"><a href="#new">Новинки</a></div>
+      <div class="nav-item"><a href="#bestsellers">Хиты продаж</a></div>
+      <div class="nav-item"><a href="#deals">Акции</a></div>
+      <div class="nav-item"><a href="#reviews">Отзывы</a></div>
+      <div class="nav-item"><a href="#contact">Контакты</a></div>
+    </nav>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Поиск товаров...">
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" title="Тема">
+        <svg id="themeIcon" viewBox="0 0 24 24" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="icon-btn" id="favBtn" title="Избранное">
+        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+        <span class="badge-count" id="favCount">0</span>
+      </button>
+      <button class="icon-btn" id="cartBtn" title="Корзина">
+        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        <span class="badge-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="marquee"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow">Коллекция 2026</span>
+      <h1 id="heroTitle">Технологии, которые вдохновляют</h1>
+      <p id="heroText">Откройте для себя premium-подборку смартфонов, ноутбуков и аксессуаров от мировых брендов. Стиль, скорость и безупречное качество — в каждой детали.</p>
+      <div class="hero-cta">
+        <a href="#categories" class="btn btn-gold">Смотреть каталог</a>
+        <a href="#deals" class="btn btn-ghost">Текущие акции</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><b>2.4M+</b><span>Клиентов</span></div>
+    <div><b>60K+</b><span>Товаров</span></div>
+    <div><b>4.9★</b><span>Рейтинг</span></div>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+  <div class="hero-arrows">
+    <button id="heroPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button id="heroNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+  </div>
+</section>
+
+<!-- ============ PROMO ============ -->
+<section class="section" id="deals">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Специальные предложения</span><h2>Акции и скидки</h2></div>
+      <a href="#bestsellers" class="view-all">Все акции</a>
+    </div>
+    <div class="promo-grid reveal">
+      <div class="promo-card">
+        <span class="tag">-40%</span>
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=900&q=80&auto=format" loading="lazy" alt="Ноутбуки">
+        <h3>Ультрабуки нового поколения</h3>
+        <p>Скидки до 40% на топовые модели</p>
+        <a href="#" class="btn btn-gold btn-sm">Перейти</a>
+      </div>
+      <div class="promo-card">
+        <span class="tag">Новинка</span>
+        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=700&q=80&auto=format" loading="lazy" alt="Смарт-часы">
+        <h3>Смарт-часы Series X</h3>
+        <p>Уже в продаже</p>
+        <a href="#" class="btn btn-ghost btn-sm">Подробнее</a>
+      </div>
+      <div class="promo-card">
+        <span class="tag">-25%</span>
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80&auto=format" loading="lazy" alt="Наушники">
+        <h3>Аудио премиум-класса</h3>
+        <p>Только до конца недели</p>
+        <a href="#" class="btn btn-ghost btn-sm">Подробнее</a>
+      </div>
+    </div>
+
+    <div class="countdown-banner reveal">
+      <div>
+        <h3>🔥 Мега-распродажа заканчивается через</h3>
+        <p>Успейте забрать лучшие товары по сниженным ценам</p>
+      </div>
+      <div class="timer" id="timer">
+        <div><b id="td">02</b><span>Дни</span></div>
+        <div><b id="th">14</b><span>Часы</span></div>
+        <div><b id="tm">36</b><span>Мин</span></div>
+        <div><b id="ts">10</b><span>Сек</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+<section class="section" id="categories" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Категории</span><h2>Популярные категории</h2></div>
+      <a href="#new" class="view-all">Все категории</a>
+    </div>
+    <div class="cat-grid reveal" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- ============ NEW ARRIVALS ============ -->
+<section class="section" id="new">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Только что поступили</span><h2>Новинки</h2></div>
+      <a href="#" class="view-all">Смотреть все</a>
+    </div>
+    <div class="grid-products reveal" id="newGrid"></div>
+  </div>
+</section>
+
+<!-- ============ BESTSELLERS ============ -->
+<section class="section" id="bestsellers" style="background:var(--bg-soft);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Выбор покупателей</span><h2>Хиты продаж</h2></div>
+      <a href="#" class="view-all">Смотреть все</a>
+    </div>
+    <div class="grid-products reveal" id="bestGrid"></div>
+  </div>
+</section>
+
+<!-- ============ TOP DEALS ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Не пропустите</span><h2>Лучшие предложения</h2></div>
+      <a href="#" class="view-all">Смотреть все</a>
+    </div>
+    <div class="grid-products reveal" id="dealGrid"></div>
+  </div>
+</section>
+
+<!-- ============ FULL CATALOG ============ -->
+<section class="section" style="background:var(--bg-soft);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Полный каталог</span><h2>Рекомендуемые товары</h2>
+        <p class="section-sub">Более 60 товаров в 20 категориях. Используйте фильтры и поиск, чтобы найти именно то, что нужно.</p>
+      </div>
+    </div>
+    <div class="filter-bar reveal" id="filterBar">
+      <select id="sortSelect">
+        <option value="popular">По популярности</option>
+        <option value="price-asc">Цена: по возрастанию</option>
+        <option value="price-desc">Цена: по убыванию</option>
+        <option value="rating">По рейтингу</option>
+      </select>
+    </div>
+    <div class="grid-products reveal" id="allGrid"></div>
+    <div class="load-more-wrap reveal">
+      <button class="btn btn-ghost" id="loadMoreBtn">Показать ещё товары</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BRANDS ============ -->
+<section class="section" style="padding:60px 0;">
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom:10px;">
+      <div><span class="eyebrow">Наши партнёры</span><h2>Популярные бренды</h2></div>
+    </div>
+    <div class="brand-strip reveal">
+      <div>AERIX</div><div>PULSE</div><div>ORBIT&nbsp;TECH</div><div>NOVA</div><div>ZENVIA</div><div>KAIRO</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats-band">
+  <div class="container stats-grid">
+    <div class="reveal"><b class="counter" data-target="2400000">0</b><span>Довольных клиентов</span></div>
+    <div class="reveal"><b class="counter" data-target="60000">0</b><span>Товаров в каталоге</span></div>
+    <div class="reveal"><b class="counter" data-target="120">0</b><span>Стран доставки</span></div>
+    <div class="reveal"><b class="counter" data-target="15">0</b><span>Лет на рынке</span></div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Нам доверяют</span><h2>Отзывы клиентов</h2></div>
+    </div>
+    <div class="review-grid reveal" id="reviewGrid"></div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" style="background:var(--bg-soft);">
+  <div class="container">
+    <div class="section-head reveal" style="justify-content:center;text-align:center;">
+      <div style="margin:0 auto;"><span class="eyebrow">Вопросы и ответы</span><h2>Часто задаваемые вопросы</h2></div>
+    </div>
+    <div class="faq-list reveal" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="section">
+  <div class="container">
+    <div class="newsletter reveal">
+      <h2>Будьте первыми в курсе новинок</h2>
+      <p>Подпишитесь и получите промокод на скидку 10% на первый заказ</p>
+      <form class="news-form" id="newsForm">
+        <input type="email" placeholder="Ваш email" required>
+        <button class="btn btn-gold" type="submit">Подписаться</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Свяжитесь с нами</span><h2>Контакты</h2></div>
+    </div>
+    <div class="contact-grid reveal">
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <input type="text" placeholder="Ваше имя" required>
+          <input type="email" placeholder="Email" required>
+        </div>
+        <input type="text" placeholder="Тема сообщения">
+        <textarea placeholder="Ваше сообщение" required></textarea>
+        <button class="btn btn-gold" type="submit">Отправить сообщение</button>
+      </form>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=Moscow%20City&output=embed" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="logo">NEX<em>ORA</em></a>
+        <p>Премиальный интернет-магазин электроники и стиля жизни. Мы работаем для того, чтобы каждый заказ радовал вас.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.4.36a9 9 0 01-2.83 1.08A4.52 4.52 0 0016.11 0c-2.5 0-4.52 2.02-4.52 4.52 0 .35.04.7.11 1.03C7.69 5.4 4.07 3.48 1.64.9a4.48 4.48 0 00-.61 2.27c0 1.56.8 2.95 2 3.77a4.5 4.5 0 01-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44a4.5 4.5 0 01-2.04.08c.57 1.8 2.24 3.11 4.22 3.15A9.05 9.05 0 010 19.54a12.8 12.8 0 006.92 2.03c8.3 0 12.85-6.88 12.85-12.85 0-.2 0-.39-.01-.58A9.2 9.2 0 0023 3z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Каталог</h5>
+        <ul>
+          <li><a href="#">Смартфоны</a></li>
+          <li><a href="#">Ноутбуки</a></li>
+          <li><a href="#">Смарт-часы</a></li>
+          <li><a href="#">Наушники</a></li>
+          <li><a href="#">Телевизоры</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Компания</h5>
+        <ul>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Карьера</a></li>
+          <li><a href="#">Блог</a></li>
+          <li><a href="#">Партнёрам</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Помощь</h5>
+        <ul>
+          <li><a href="#">Доставка</a></li>
+          <li><a href="#">Возврат товара</a></li>
+          <li><a href="#">Гарантия</a></li>
+          <li><a href="#">Оплата</a></li>
+          <li><a href="#">Отследить заказ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Правовая информация</h5>
+        <ul>
+          <li><a href="#">Условия использования</a></li>
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Файлы cookie</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NEXORA. Все права защищены.</span>
+      <span>Сделано с ❤ для наших покупателей</span>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Корзина (<span id="drawerCount">0</span>)</h3>
+    <button class="drawer-close" id="closeCart">✕</button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot">
+    <div class="sum-row"><span>Подытог</span><span id="sumSub">0 ₽</span></div>
+    <div class="sum-row"><span>Скидка</span><span id="sumDiscount">−0 ₽</span></div>
+    <div class="sum-row"><span>Доставка</span><span id="sumShip">0 ₽</span></div>
+    <div class="sum-row total"><span>Итого</span><span id="sumTotal">0 ₽</span></div>
+    <button class="btn btn-gold" id="checkoutBtn">Оформить заказ</button>
+  </div>
+</div>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div class="modal" id="quickViewModal">
+  <div class="modal-box" id="quickViewBox"></div>
+</div>
+
+<!-- ============ CHECKOUT MODAL ============ -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-box" style="max-width:560px;">
+    <button class="modal-close" id="closeCheckout">✕</button>
+    <div class="checkout-steps">
+      <div class="active">1. Доставка</div>
+      <div>2. Оплата</div>
+      <div>3. Готово</div>
+    </div>
+    <div class="checkout-body" id="checkoutBody">
+      <div class="form-row">
+        <input type="text" placeholder="Имя">
+        <input type="text" placeholder="Фамилия">
+      </div>
+      <input type="text" placeholder="Адрес доставки" style="width:100%;margin-bottom:14px;padding:15px 18px;border-radius:12px;border:1px solid var(--line);background:var(--bg-card);color:var(--text);">
+      <div class="form-row">
+        <input type="text" placeholder="Город">
+        <input type="text" placeholder="Индекс">
+      </div>
+      <div class="form-row">
+        <input type="text" placeholder="Номер карты">
+        <input type="text" placeholder="ММ/ГГ">
+      </div>
+      <button class="btn btn-gold" style="width:100%;margin-top:8px;" id="placeOrderBtn">Подтвердить заказ</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+
+<script>
+/* ==================================================================
+   NEXORA — единый файл интернет-магазина
+   ================================================================== */
+
+/* ---------- PRELOADER ---------- */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('preloader').classList.add('hide'), 600);
+});
+
+/* ---------- CATEGORY DATA ---------- */
+const CATEGORIES = [
+  {id:'phones', name:'Смартфоны', em:'📱', img:'photo-1511707171634-5f897ff02aa9'},
+  {id:'laptops', name:'Ноутбуки', em:'💻', img:'photo-1496181133206-80ce9b88a853'},
+  {id:'watches', name:'Смарт-часы', em:'⌚', img:'photo-1546868871-7041f2a55e12'},
+  {id:'audio', name:'Наушники', em:'🎧', img:'photo-1505740420928-5e560c06d30e'},
+  {id:'cameras', name:'Фотоаппараты', em:'📷', img:'photo-1526401485004-46910ecc8e51'},
+  {id:'consoles', name:'Приставки', em:'🎮', img:'photo-1607853202273-797f1c22a38e'},
+  {id:'monitors', name:'Мониторы', em:'🖥', img:'photo-1616348436168-de43ad0db179'},
+  {id:'accessories', name:'Аксессуары', em:'🖱', img:'photo-1585792180666-f7347c490ee2'},
+  {id:'home', name:'Техника для дома', em:'🏠', img:'photo-1556909212-d5b604d0c90d'},
+  {id:'clothes', name:'Одежда', em:'👕', img:'photo-1445205170230-053b83016050'},
+  {id:'shoes', name:'Обувь', em:'👟', img:'photo-1542291026-7eec264c27ff'},
+  {id:'bags', name:'Рюкзаки', em:'🎒', img:'photo-1553062407-98eeb64c6a62'},
+  {id:'beauty', name:'Косметика', em:'💄', img:'photo-1522335789203-aabd1fc54bc9'},
+  {id:'keyboards', name:'Клавиатуры', em:'⌨', img:'photo-1587829741301-dc798b83add3'},
+  {id:'printers', name:'Принтеры', em:'🖨', img:'photo-1612815154858-60aa4c59eaa6'},
+  {id:'tv', name:'Телевизоры', em:'📺', img:'photo-1593784991095-a205069470b6'},
+  {id:'sport', name:'Спорттовары', em:'🚴', img:'photo-1461896836934-ffe607ba8211'},
+  {id:'furniture', name:'Мебель', em:'🛋', img:'photo-1493663284031-b7e3aefcae8e'},
+  {id:'toys', name:'Игрушки', em:'🧸', img:'photo-1558877385-81a1c7e67d72'},
+  {id:'books', name:'Книги', em:'📚', img:'photo-1441986300917-64674bd600d8'},
+];
+
+/* image pools per category for variety across 3 products each */
+const IMG_POOL = {
+  phones:['photo-1511707171634-5f897ff02aa9','photo-1592750475338-74b7b21085ab','photo-1580910051074-3eb694886505'],
+  laptops:['photo-1496181133206-80ce9b88a853','photo-1517336714731-489689fd1ca8','photo-1611186871348-b1ce696e52c9'],
+  watches:['photo-1546868871-7041f2a55e12','photo-1523275335684-37898b6baf30','photo-1526046479631-45107a7a4ffe'],
+  audio:['photo-1505740420928-5e560c06d30e','photo-1524678606370-a47ad25cb82a','photo-1548378352-06c9b2ac1c5c'],
+  cameras:['photo-1526401485004-46910ecc8e51','photo-1502920917128-1aa500764cbd','photo-1502920917128-1aa500764cbd'],
+  consoles:['photo-1607853202273-797f1c22a38e','photo-1592840062661-a5a7f78e2056','photo-1580327344181-c1163234e5a0'],
+  monitors:['photo-1616348436168-de43ad0db179','photo-1527443224154-c4a3942d3acf','photo-1547082299-de196ea013d6'],
+  accessories:['photo-1585792180666-f7347c490ee2','photo-1587829741301-dc798b83add3','photo-1615663245857-ac93bb7c39e7'],
+  home:['photo-1556909212-d5b604d0c90d','photo-1585659722983-3a675dabf23d','photo-1586023492125-27b2c045efd7'],
+  clothes:['photo-1445205170230-053b83016050','photo-1523381210434-271e8be1f52b','photo-1503341504253-dff4815485f1'],
+  shoes:['photo-1542291026-7eec264c27ff','photo-1595950653106-6c9ebd614d3a','photo-1551028719-00167b16eac5'],
+  bags:['photo-1553062407-98eeb64c6a62','photo-1555529669-e69e7aa0ba9a','photo-1547949003-9792a18a2645'],
+  beauty:['photo-1522335789203-aabd1fc54bc9','photo-1556228720-195a672e8a03','photo-1571781926291-c477ebfd024b'],
+  keyboards:['photo-1587829741301-dc798b83add3','photo-1595225476474-f9b7c0a1f5a9','photo-1618384887929-16ec33fab9ef'],
+  printers:['photo-1612815154858-60aa4c59eaa6','photo-1612815154858-60aa4c59eaa6','photo-1612815154858-60aa4c59eaa6'],
+  tv:['photo-1593784991095-a205069470b6','photo-1571171637578-41bc2dd41cd2','photo-1567690187548-f07b1d7bf5a9'],
+  sport:['photo-1461896836934-ffe607ba8211','photo-1517649763962-0c623066013b','photo-1517836357463-d25dfeac3438'],
+  furniture:['photo-1493663284031-b7e3aefcae8e','photo-1555041469-a586c61ea9bc','photo-1631049307264-da0ec9d70304'],
+  toys:['photo-1558877385-81a1c7e67d72','photo-1558618666-fcd25c85cd64','photo-1566576721346-d4a3b4eaeb55'],
+  books:['photo-1441986300917-64674bd600d8','photo-1512820790803-83ca734da794','photo-1524578271613-d550eede339c'],
+};
+
+const NAMES = {
+  phones:['Nexora Phone 15 Pro','Aerix Galaxy S9 Ultra','Orbit Pixel V','Zenvia Fold 3'],
+  laptops:['AeroBook 16 Pro','Kairo Notebook X1','Nova Slim 14','Pulse Studio 15'],
+  watches:['PulseWatch Series 9','Orbit Fit GT','Aerix Watch Active','Zenvia Loop SE'],
+  audio:['Nova Sound Max','Aerix Buds Pro','Kairo Studio Headset','Pulse Ear ANC'],
+  cameras:['Orbit Photo X100','Nexora Mirrorless Z','Zenvia Action Cam','Kairo Pro Shooter'],
+  consoles:['Pulse Play Console X','Nova Game Station 5','Orbit VR Play Kit','Aerix Handheld Pro'],
+  monitors:['Nova Curve 34"','Aerix ProDisplay 27"','Kairo UltraWide 32"','Zenvia 4K Vision'],
+  accessories:['Pulse Mouse Pro','Orbit Hub 8-in-1','Nova Charging Dock','Aerix Cable Kit'],
+  home:['Kairo SmartMixer','Nova AirPurify','Zenvia RoboVac X','Pulse SteamBrew'],
+  clothes:['Nexora Essential Hoodie','Orbit Urban Jacket','Kairo Classic Tee','Nova Denim Fit'],
+  shoes:['Aerix Runner X','Nova StreetStep','Pulse Trail Boost','Zenvia Court Classic'],
+  bags:['Orbit Voyager Backpack','Kairo Daily Pack','Nova Urban Sling','Aerix Travel Duffel'],
+  beauty:['Zenvia GlowSerum','Nova Velvet Palette','Kairo PureCare Set','Pulse Radiance Kit'],
+  keyboards:['Aerix Mech K1','Nova TypeCraft','Orbit Silent Board','Kairo RGB Strike'],
+  printers:['Nova InkJet Pro','Pulse LaserMax','Zenvia PhotoPrint','Aerix AllInOne'],
+  tv:['Kairo Vision OLED 55"','Nova UltraView 65"','Orbit Smart 4K 50"','Zenvia Cinema 75"'],
+  sport:['Pulse RoadBike Pro','Nova FitBand Kit','Aerix Yoga Set','Orbit Trail Backpack'],
+  furniture:['Zenvia Lounge Sofa','Nova Oak Desk','Kairo Accent Chair','Pulse Bookshelf Unit'],
+  toys:['Nova BuildBlocks Set','Aerix RC Racer','Orbit Plush Friend','Kairo Puzzle Cube'],
+  books:['Аврора: сборник рассказов','Путь к цели — бизнес-бестселлер','Мир без границ — роман','Кулинарная книга шефа'],
+};
+
+/* ---------- BUILD PRODUCTS ---------- */
+let products = [];
+let uid = 1;
+function imgUrl(id, w){ return `https://images.unsplash.com/${id}?w=${w||600}&q=80&auto=format`; }
+
+CATEGORIES.forEach(cat=>{
+  const pool = IMG_POOL[cat.id];
+  const names = NAMES[cat.id];
+  for(let i=0;i<3;i++){
+    const base = 2500 + Math.round(Math.random()*45000);
+    const hasDiscount = Math.random() > 0.3;
+    const discount = hasDiscount ? [10,15,20,25,30,40][Math.floor(Math.random()*6)] : 0;
+    const oldPrice = hasDiscount ? Math.round(base/(1-discount/100)) : null;
+    const badgeRoll = Math.random();
+    products.push({
+      id: uid++,
+      cat: cat.id,
+      catName: cat.name,
+      name: names[i % names.length] + (i>2? ' '+(i+1):''),
+      price: base,
+      oldPrice: oldPrice,
+      discount: discount,
+      rating: (3.8 + Math.random()*1.2).toFixed(1),
+      reviews: Math.floor(50 + Math.random()*2400),
+      badge: badgeRoll > 0.75 ? 'new' : (badgeRoll > 0.5 ? 'hit' : null),
+      img: imgUrl(pool[i % pool.length], 600),
+      imgBig: imgUrl(pool[i % pool.length], 900),
+      desc: `${names[i % names.length]} — премиальный товар категории «${cat.name}» с гарантией качества NEXORA и бесплатной доставкой по всей стране. Идеальный выбор для тех, кто ценит стиль и надёжность.`,
+      popularity: Math.random()
+    });
+  }
+});
+
+/* ---------- STATE ---------- */
+let cart = JSON.parse(localStorage.getItem('nexora_cart') || '[]');
+let favorites = JSON.parse(localStorage.getItem('nexora_favs') || '[]');
+let visibleCount = 8;
+let currentCategory = 'all';
+let currentSearch = '';
+
+function saveState(){
+  localStorage.setItem('nexora_cart', JSON.stringify(cart));
+  localStorage.setItem('nexora_favs', JSON.stringify(favorites));
+}
+
+/* ---------- HELPERS ---------- */
+function money(n){ return n.toLocaleString('ru-RU') + ' ₽'; }
+function starsHtml(rating){
+  const full = Math.round(rating);
+  return '★★★★★'.slice(0,full) + '☆☆☆☆☆'.slice(0, 5-full);
+}
+function toast(msg){
+  const wrap = document.getElementById('toast-wrap');
+  const el = document.createElement('div');
+  el.className='toast';
+  el.innerHTML = `<span>✅</span><span>${msg}</span>`;
+  wrap.appendChild(el);
+  setTimeout(()=>el.remove(), 2800);
+}
+
+/* ---------- RENDER: MEGA MENU ---------- */
+document.getElementById('megaMenu').innerHTML = CATEGORIES.map(c=>
+  `<a href="#" data-cat="${c.id}" class="mega-link"><span class="em">${c.em}</span>${c.name}</a>`
+).join('');
+
+/* ---------- RENDER: MARQUEE ---------- */
+const marqueeItems = ['🚚 Бесплатная доставка от 5000 ₽','🔥 Скидки до 50% на новинки','⭐ Рейтинг 4.9 по отзывам покупателей','🎁 Подарки к каждому заказу','💳 Оплата картой и при получении'];
+document.getElementById('marqueeTrack').innerHTML = (marqueeItems.concat(marqueeItems)).map(t=>`<span>${t}</span>`).join('');
+
+/* ---------- RENDER: HERO SLIDER ---------- */
+const heroSlidesData = [
+  {img:'photo-1523275335684-37898b6baf30', title:'Технологии, которые вдохновляют', text:'Откройте для себя premium-подборку смартфонов, ноутбуков и аксессуаров от мировых брендов.'},
+  {img:'photo-1542291026-7eec264c27ff', title:'Стиль без компромиссов', text:'Обувь и одежда премиум-класса для повседневной жизни и особых случаев.'},
+  {img:'photo-1593784991095-a205069470b6', title:'Ваш дом. Ваши правила.', text:'Техника и мебель, которые превращают дом в пространство комфорта.'}
+];
+const heroSlidesEl = document.getElementById('heroSlides');
+const heroDotsEl = document.getElementById('heroDots');
+heroSlidesData.forEach((s,i)=>{
+  const div = document.createElement('div');
+  div.className = 'hero-slide' + (i===0?' active':'');
+  div.innerHTML = `<img src="${imgUrl(s.img,1600)}" loading="${i===0?'eager':'lazy'}" alt="${s.title}">`;
+  heroSlidesEl.appendChild(div);
+  const dot = document.createElement('button');
+  if(i===0) dot.className='active';
+  dot.addEventListener('click', ()=>goToSlide(i));
+  heroDotsEl.appendChild(dot);
+});
+let heroIdx = 0;
+function goToSlide(i){
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dots button');
+  slides[heroIdx].classList.remove('active');
+  dots[heroIdx].classList.remove('active');
+  heroIdx = (i + slides.length) % slides.length;
+  slides[heroIdx].classList.add('active');
+  dots[heroIdx].classList.add('active');
+  document.getElementById('heroTitle').textContent = heroSlidesData[heroIdx].title;
+  document.getElementById('heroText').textContent = heroSlidesData[heroIdx].text;
+}
+document.getElementById('heroPrev').addEventListener('click', ()=>goToSlide(heroIdx-1));
+document.getElementById('heroNext').addEventListener('click', ()=>goToSlide(heroIdx+1));
+setInterval(()=>goToSlide(heroIdx+1), 6000);
+
+/* ---------- RENDER: CATEGORIES GRID ---------- */
+document.getElementById('catGrid').innerHTML = CATEGORIES.map(c=>{
+  const count = products.filter(p=>p.cat===c.id).length;
+  return `<div class="cat-card" data-cat="${c.id}"><span class="em">${c.em}</span><h4>${c.name}</h4><span>${count} товаров</span></div>`;
+}).join('');
+
+/* ---------- PRODUCT CARD TEMPLATE ---------- */
+function productCard(p){
+  const isFav = favorites.includes(p.id);
+  return `
+  <div class="p-card" data-id="${p.id}">
+    <div class="p-media">
+      <div class="p-flags">
+        ${p.badge==='new' ? '<span class="flag new">Новинка</span>' : ''}
+        ${p.badge==='hit' ? '<span class="flag hit">Хит</span>' : ''}
+        ${p.discount ? `<span class="flag sale">-${p.discount}%</span>` : ''}
+      </div>
+      <button class="p-fav ${isFav?'active':''}" data-fav="${p.id}">
+        <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+      </button>
+      <img src="${p.img}" loading="lazy" alt="${p.name}">
+      <div class="p-quick"><button data-quick="${p.id}">Быстрый просмотр</button></div>
+    </div>
+    <div class="p-body">
+      <span class="p-cat">${p.catName}</span>
+      <div class="p-name">${p.name}</div>
+      <div class="p-rating"><span class="stars">${starsHtml(p.rating)}</span> ${p.rating} · (${p.reviews})</div>
+      <div class="p-price">
+        <span class="now">${money(p.price)}</span>
+        ${p.oldPrice ? `<span class="old">${money(p.oldPrice)}</span>` : ''}
+        ${p.discount ? `<span class="off">-${p.discount}%</span>` : ''}
+      </div>
+      <div class="p-actions">
+        <button class="btn btn-gold" data-add="${p.id}">В корзину</button>
+        <button class="btn btn-ghost" data-detail="${p.id}">Подробнее</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---------- RENDER SECTIONS ---------- */
+function renderNew(){
+  const list = products.filter(p=>p.badge==='new').slice(0,8);
+  document.getElementById('newGrid').innerHTML = list.map(productCard).join('');
+}
+function renderBest(){
+  const list = [...products].sort((a,b)=>b.popularity-a.popularity).slice(0,8);
+  document.getElementById('bestGrid').innerHTML = list.map(productCard).join('');
+}
+function renderDeals(){
+  const list = products.filter(p=>p.discount>=20).sort((a,b)=>b.discount-a.discount).slice(0,8);
+  document.getElementById('dealGrid').innerHTML = list.map(productCard).join('');
+}
+function getFilteredAll(){
+  let list = [...products];
+  if(currentCategory !== 'all') list = list.filter(p=>p.cat===currentCategory);
+  if(currentSearch) list = list.filter(p=>p.name.toLowerCase().includes(currentSearch) || p.catName.toLowerCase().includes(currentSearch));
+  const sortVal = document.getElementById('sortSelect').value;
+  if(sortVal==='price-asc') list.sort((a,b)=>a.price-b.price);
+  else if(sortVal==='price-desc') list.sort((a,b)=>b.price-a.price);
+  else if(sortVal==='rating') list.sort((a,b)=>b.rating-a.rating);
+  else list.sort((a,b)=>b.popularity-a.popularity);
+  return list;
+}
+function renderAll(){
+  const list = getFilteredAll();
+  document.getElementById('allGrid').innerHTML = list.slice(0,visibleCount).map(productCard).join('') ||
+    `<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0;">Товары не найдены</p>`;
+  document.getElementById('loadMoreBtn').style.display = list.length > visibleCount ? 'inline-flex' : 'none';
+}
+
+/* filter chips */
+function renderFilterBar(){
+  const bar = document.getElementById('filterBar');
+  const chips = ['<option value="" disabled>Категория</option>'];
+  let html = `<select id="catSelect"><option value="all">Все категории</option>${CATEGORIES.map(c=>`<option value="${c.id}">${c.em} ${c.name}</option>`).join('')}</select>`;
+  bar.insertAdjacentHTML('afterbegin', html);
+  document.getElementById('catSelect').addEventListener('change', e=>{
+    currentCategory = e.target.value; visibleCount = 8; renderAll();
+  });
+}
+renderFilterBar();
+
+renderNew(); renderBest(); renderDeals(); renderAll();
+
+document.getElementById('sortSelect').addEventListener('change', renderAll);
+document.getElementById('loadMoreBtn').addEventListener('click', ()=>{ visibleCount += 8; renderAll(); });
+
+/* category card / mega menu click -> filter catalog */
+document.addEventListener('click', e=>{
+  const catCard = e.target.closest('[data-cat]');
+  if(catCard){
+    e.preventDefault();
+    currentCategory = catCard.dataset.cat;
+    visibleCount = 8;
+    document.getElementById('catSelect').value = currentCategory;
+    renderAll();
+    document.querySelector('.filter-bar').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+});
+
+/* search */
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', e=>{
+  currentSearch = e.target.value.trim().toLowerCase();
+  visibleCount = 8;
+  renderAll();
+  if(currentSearch){ document.getElementById('allGrid').scrollIntoView({behavior:'smooth', block:'start'}); }
+});
+
+/* ---------- CART LOGIC ---------- */
+function updateCartUI(){
+  const body = document.getElementById('cartBody');
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('drawerCount').textContent = count;
+
+  if(cart.length===0){
+    body.innerHTML = `<div class="empty-cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+      <p>Ваша корзина пуста</p></div>`;
+  } else {
+    body.innerHTML = cart.map(item=>{
+      const p = products.find(pr=>pr.id===item.id);
+      return `<div class="cart-item">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="ci-info">
+          <b>${p.name}</b>
+          <span class="ci-price">${money(p.price)}</span>
+          <div class="qty-ctrl">
+            <button data-qty="minus" data-id="${p.id}">−</button>
+            <span>${item.qty}</span>
+            <button data-qty="plus" data-id="${p.id}">+</button>
+          </div>
+        </div>
+        <span class="ci-remove" data-remove="${p.id}">Удалить</span>
+      </div>`;
+    }).join('');
+  }
+  const subtotal = cart.reduce((s,i)=>{ const p = products.find(pr=>pr.id===i.id); return s + p.price*i.qty; },0);
+  const discount = cart.reduce((s,i)=>{ const p = products.find(pr=>pr.id===i.id); const disc = p.oldPrice ? (p.oldPrice-p.price)*i.qty : 0; return s+disc; },0);
+  const shipping = subtotal > 0 && subtotal < 5000 ? 350 : 0;
+  const total = subtotal + shipping;
+  document.getElementById('sumSub').textContent = money(subtotal);
+  document.getElementById('sumDiscount').textContent = '−' + money(discount);
+  document.getElementById('sumShip').textContent = shipping ? money(shipping) : 'Бесплатно';
+  document.getElementById('sumTotal').textContent = money(total);
+  document.getElementById('checkoutBtn').disabled = cart.length===0;
+  saveState();
+}
+
+function addToCart(id){
+  const existing = cart.find(i=>i.id===id);
+  if(existing) existing.qty++;
+  else cart.push({id, qty:1});
+  updateCartUI();
+  toast('Товар добавлен в корзину');
+}
+
+document.addEventListener('click', e=>{
+  const addBtn = e.target.closest('[data-add]');
+  if(addBtn){ addToCart(Number(addBtn.dataset.add)); createRipple(e, addBtn); }
+
+  const qtyBtn = e.target.closest('[data-qty]');
+  if(qtyBtn){
+    const id = Number(qtyBtn.dataset.id);
+    const item = cart.find(i=>i.id===id);
+    if(qtyBtn.dataset.qty==='plus') item.qty++;
+    else { item.qty--; if(item.qty<=0) cart = cart.filter(i=>i.id!==id); }
+    updateCartUI();
+  }
+  const removeBtn = e.target.closest('[data-remove]');
+  if(removeBtn){
+    cart = cart.filter(i=>i.id!==Number(removeBtn.dataset.remove));
+    updateCartUI();
+    toast('Товар удалён из корзины');
+  }
+  const favBtn = e.target.closest('[data-fav]');
+  if(favBtn){
+    const id = Number(favBtn.dataset.fav);
+    if(favorites.includes(id)) favorites = favorites.filter(f=>f!==id);
+    else favorites.push(id);
+    favBtn.classList.toggle('active');
+    document.getElementById('favCount').textContent = favorites.length;
+    saveState();
+  }
+  const quickBtn = e.target.closest('[data-quick]') || e.target.closest('[data-detail]');
+  if(quickBtn){
+    const id = Number(quickBtn.dataset.quick || quickBtn.dataset.detail);
+    openQuickView(id);
+  }
+});
+
+function createRipple(e, el){
+  const rect = el.getBoundingClientRect();
+  const ripple = document.createElement('span');
+  ripple.className='ripple';
+  ripple.style.left = (e.clientX-rect.left)+'px';
+  ripple.style.top = (e.clientY-rect.top)+'px';
+  el.style.position='relative';
+  el.style.overflow='hidden';
+  el.appendChild(ripple);
+  setTimeout(()=>ripple.remove(),600);
+}
+
+document.getElementById('favCount').textContent = favorites.length;
+updateCartUI();
+
+/* ---------- DRAWER OPEN/CLOSE ---------- */
+const overlay = document.getElementById('overlay');
+const cartDrawer = document.getElementById('cartDrawer');
+function openDrawer(){ cartDrawer.classList.add('show'); overlay.classList.add('show'); }
+function closeDrawer(){ cartDrawer.classList.remove('show'); overlay.classList.remove('show'); }
+document.getElementById('cartBtn').addEventListener('click', openDrawer);
+document.getElementById('closeCart').addEventListener('click', closeDrawer);
+overlay.addEventListener('click', ()=>{ closeDrawer(); closeQuickView(); closeCheckoutModal(); });
+
+/* ---------- QUICK VIEW MODAL ---------- */
+const qvModal = document.getElementById('quickViewModal');
+function openQuickView(id){
+  const p = products.find(pr=>pr.id===id);
+  document.getElementById('quickViewBox').innerHTML = `
+    <button class="modal-close" id="qvClose">✕</button>
+    <div class="qv-grid">
+      <div class="qv-img"><img src="${p.imgBig}" alt="${p.name}"></div>
+      <div class="qv-info">
+        <span class="p-cat">${p.catName}</span>
+        <h3>${p.name}</h3>
+        <div class="p-rating"><span class="stars">${starsHtml(p.rating)}</span> ${p.rating} · (${p.reviews} отзывов)</div>
+        <div class="p-price"><span class="now">${money(p.price)}</span>${p.oldPrice?`<span class="old">${money(p.oldPrice)}</span><span class="off">-${p.discount}%</span>`:''}</div>
+        <p class="desc">${p.desc}</p>
+        <div class="p-actions">
+          <button class="btn btn-gold" data-add="${p.id}">Добавить в корзину</button>
+          <button class="btn btn-ghost p-fav ${favorites.includes(p.id)?'active':''}" data-fav="${p.id}" style="flex:0 0 auto;width:52px;">
+            <svg viewBox="0 0 24 24" width="17" style="stroke:currentColor;"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>`;
+  qvModal.classList.add('show');
+  overlay.classList.add('show');
+  document.getElementById('qvClose').addEventListener('click', closeQuickView);
+}
+function closeQuickView(){ qvModal.classList.remove('show'); if(!cartDrawer.classList.contains('show')) overlay.classList.remove('show'); }
+
+/* ---------- CHECKOUT MODAL ---------- */
+const checkoutModal = document.getElementById('checkoutModal');
+function openCheckoutModal(){
+  if(cart.length===0) return;
+  closeDrawer();
+  checkoutModal.classList.add('show');
+  overlay.classList.add('show');
+}
+function closeCheckoutModal(){ checkoutModal.classList.remove('show'); overlay.classList.remove('show'); }
+document.getElementById('checkoutBtn').addEventListener('click', openCheckoutModal);
+document.getElementById('closeCheckout').addEventListener('click', closeCheckoutModal);
+document.getElementById('placeOrderBtn').addEventListener('click', ()=>{
+  document.getElementById('checkoutBody').innerHTML = `
+    <div class="co-success">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      <h3 style="margin-bottom:10px;">Заказ оформлен!</h3>
+      <p style="color:var(--muted);">Спасибо за покупку. Мы отправили детали заказа на вашу почту.</p>
+      <button class="btn btn-gold" style="margin-top:24px;" id="closeSuccessBtn">Продолжить покупки</button>
+    </div>`;
+  document.querySelectorAll('.checkout-steps div').forEach(d=>d.classList.add('active'));
+  cart = [];
+  updateCartUI();
+  document.getElementById('closeSuccessBtn').addEventListener('click', closeCheckoutModal);
+});
+
+/* ---------- THEME TOGGLE ---------- */
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+function setTheme(t){
+  document.body.setAttribute('data-theme', t);
+  localStorage.setItem('nexora_theme', t);
+  themeIcon.innerHTML = t==='dark'
+    ? '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>'
+    : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+}
+themeToggle.addEventListener('click', ()=>{
+  const cur = document.body.getAttribute('data-theme');
+  setTheme(cur==='dark' ? 'light' : 'dark');
+});
+setTheme(localStorage.getItem('nexora_theme') || 'dark');
+
+/* ---------- FAVORITES BUTTON -> scroll to catalog filtered ---------- */
+document.getElementById('favBtn').addEventListener('click', ()=>{
+  if(favorites.length===0){ toast('Список избранного пуст'); return; }
+  document.getElementById('allGrid').innerHTML = products.filter(p=>favorites.includes(p.id)).map(productCard).join('');
+  document.getElementById('loadMoreBtn').style.display='none';
+  document.getElementById('allGrid').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+/* ---------- BACK TO TOP ---------- */
+const toTopBtn = document.getElementById('toTop');
+window.addEventListener('scroll', ()=>{
+  toTopBtn.classList.toggle('show', window.scrollY > 600);
+  document.querySelector('header.site-header').style.boxShadow = window.scrollY>10 ? '0 8px 24px rgba(0,0,0,0.25)':'none';
+});
+toTopBtn.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ---------- BURGER (mobile nav) ---------- */
+document.getElementById('burgerBtn').addEventListener('click', ()=>{
+  const nav = document.getElementById('mainNav');
+  const isOpen = nav.style.display === 'flex';
+  nav.style.cssText = isOpen ? '' : 'display:flex;position:fixed;top:var(--header-h);left:0;right:0;background:var(--bg-soft);flex-direction:column;padding:16px;border-bottom:1px solid var(--line);z-index:400;';
+});
+
+/* ---------- COUNTDOWN TIMER ---------- */
+let countdownTarget = new Date().getTime() + (2*24*3600 + 14*3600 + 36*60 + 10)*1000;
+function tickTimer(){
+  const now = new Date().getTime();
+  let diff = Math.max(0, countdownTarget - now);
+  const d = Math.floor(diff/86400000); diff -= d*86400000;
+  const h = Math.floor(diff/3600000); diff -= h*3600000;
+  const m = Math.floor(diff/60000); diff -= m*60000;
+  const s = Math.floor(diff/1000);
+  document.getElementById('td').textContent = String(d).padStart(2,'0');
+  document.getElementById('th').textContent = String(h).padStart(2,'0');
+  document.getElementById('tm').textContent = String(m).padStart(2,'0');
+  document.getElementById('ts').textContent = String(s).padStart(2,'0');
+}
+tickTimer(); setInterval(tickTimer, 1000);
+
+/* ---------- REVIEWS ---------- */
+const REVIEWS = [
+  {name:'Анна К.', role:'Постоянный покупатель', text:'Заказываю здесь уже второй год — качество товаров и скорость доставки на высоте. Особенно порадовала упаковка и внимание к деталям.', avatar:'photo-1502685104226-ee32379fefbe', rating:5},
+  {name:'Дмитрий В.', role:'Проверенный отзыв', text:'Купил ноутбук — пришёл на день раньше срока. Поддержка оперативно ответила на все вопросы по гарантии. Рекомендую!', avatar:'photo-1500648767791-00dcc994a43e', rating:5},
+  {name:'Мария С.', role:'Проверенный отзыв', text:'Огромный выбор косметики и приятные цены на акциях. Интерфейс сайта удобный, легко находить нужные товары.', avatar:'photo-1544005313-94ddf0286df2', rating:4},
+];
+document.getElementById('reviewGrid').innerHTML = REVIEWS.map(r=>`
+  <div class="review-card">
+    <span class="stars">${starsHtml(r.rating)}</span>
+    <p>"${r.text}"</p>
+    <div class="review-who">
+      <img src="${imgUrl(r.avatar,100)}" loading="lazy" alt="${r.name}">
+      <div><b>${r.name}</b><span>${r.role}</span></div>
+    </div>
+  </div>
+`).join('');
+
+/* ---------- FAQ ---------- */
+const FAQS = [
+  {q:'Как отследить статус моего заказа?', a:'После оформления заказа вы получите номер для отслеживания на email. Его можно ввести в разделе «Отследить заказ» в любой момент.'},
+  {q:'Какие способы оплаты доступны?', a:'Мы принимаем оплату банковскими картами, через электронные кошельки, а также наличными при получении заказа.'},
+  {q:'Можно ли вернуть товар?', a:'Да, в течение 30 дней с момента получения при сохранении товарного вида и упаковки. Оформить возврат можно в личном кабинете.'},
+  {q:'Сколько длится доставка?', a:'Доставка по крупным городам занимает 1-3 дня, по остальным регионам — от 3 до 7 дней в зависимости от удалённости.'},
+  {q:'Есть ли гарантия на товары?', a:'На всю электронику предоставляется официальная гарантия от 1 до 3 лет в зависимости от категории товара.'},
+];
+document.getElementById('faqList').innerHTML = FAQS.map((f,i)=>`
+  <div class="faq-item">
+    <button class="faq-q" data-faq="${i}">${f.q}<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    <div class="faq-a">${f.a}</div>
+  </div>
+`).join('');
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ---------- FORMS ---------- */
+document.getElementById('newsForm').addEventListener('submit', e=>{
+  e.preventDefault(); e.target.reset(); toast('Спасибо за подписку! Промокод отправлен на почту.');
+});
+document.getElementById('contactForm').addEventListener('submit', e=>{
+  e.preventDefault(); e.target.reset(); toast('Сообщение отправлено! Мы ответим в ближайшее время.');
+});
+
+/* ---------- SCROLL REVEAL ---------- */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('in'); revealObserver.unobserve(entry.target); }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* ---------- COUNTER ANIMATION ---------- */
+const counterObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const target = Number(el.dataset.target);
+      let cur = 0;
+      const step = Math.max(1, Math.ceil(target/80));
+      const iv = setInterval(()=>{
+        cur += step;
+        if(cur >= target){ cur = target; clearInterval(iv); }
+        el.textContent = cur.toLocaleString('ru-RU') + (target>=1000?'+':'');
+      }, 20);
+      counterObserver.unobserve(el);
+    }
+  });
+}, {threshold:0.4});
+document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
+</script>
+</body>
+</html>
